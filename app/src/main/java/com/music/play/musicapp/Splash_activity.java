@@ -1,4 +1,4 @@
-package com.music.free.musicapp;
+package com.music.play.musicapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 

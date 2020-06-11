@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/1.iml" filepath="$PROJECT_DIR$/app/1.iml" group="mp3soundcloud/app" />
+      <module fileurl="file://$PROJECT_DIR$/Android-mp3soundcloud.iml" filepath="$PROJECT_DIR$/Android-mp3soundcloud.iml" group="mp3soundcloud" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="mp3soundcloud/app" />
       <module fileurl="file://$PROJECT_DIR$/mp3soundcloud.iml" filepath="$PROJECT_DIR$/mp3soundcloud.iml" group="mp3soundcloud" />
     </modules>

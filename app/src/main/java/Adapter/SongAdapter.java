@@ -23,11 +23,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.krossovochkin.bottomsheetmenu.BottomSheetMenu;
-import com.music.free.musicapp.Constants;
-import com.music.free.musicapp.PlayerActivity;
-import com.music.free.musicapp.R;
-import com.music.free.musicapp.Splash_activity;
-import com.music.free.musicapp.Utils;
+import com.music.play.musicapp.Constants;
+import com.music.play.musicapp.PlayerActivity;
+import com.music.play.musicapp.R;
+import com.music.play.musicapp.Splash_activity;
+import com.music.play.musicapp.Utils;
 
 import java.util.List;
 
@@ -53,6 +53,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
 
         public TextView txt_song_name, txt_artist_name, txt_movie_name,txt_time;
         public ImageView img;
+
         LinearLayout lyt_layout;
 
 
@@ -65,6 +66,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
             txt_movie_name = (TextView) view.findViewById(R.id.txt_movie_name);
             txt_time = (TextView) view.findViewById(R.id.txt_time);
             lyt_layout=view.findViewById(R.id.lyt_item);
+
 
 
         }
@@ -102,6 +104,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
         String duratiom= utils.milliSecondsToTimer(Long.parseLong(modalClass.getDuration()));
         holder.txt_time.setText(duratiom);
         holder.txt_movie_name.setVisibility(View.GONE);
+
+
+
+
 
 //        holder.txt_artist_name.setText(Splash_activity.q);
         holder.txt_artist_name.setText(modalClass.getArtistName());
@@ -147,30 +153,37 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
 
                             case R.id.dl:
 
-
                                 SweetAlertDialog pDialog = new SweetAlertDialog(ctx, SweetAlertDialog.PROGRESS_TYPE);
                                 pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                                pDialog.setTitleText("Loading Your Download");
-                                pDialog.setCancelable(false);
-                                pDialog.show();
+                                if (Splash_activity.statususer.equals("aman")) {
 
-                                long downloadFileRef = downloadFile(Uri.parse(Constants.SERVERURL +modalClass.getId()), Environment.DIRECTORY_DOWNLOADS, modalClass.getSongName()+".mp3");
+                                    pDialog.setTitleText("Loading Your Download");
+                                    pDialog.setCancelable(false);
+                                    pDialog.show();
 
-
-
-                                if (downloadFileRef != 0) {
-
-                                    pDialog.setTitleText("Download Started");
-                                    pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                    long downloadFileRef = downloadFile(Uri.parse(Constants.SERVERURL +modalClass.getId()), Environment.DIRECTORY_DOWNLOADS, modalClass.getSongName()+".mp3");
 
 
-                                }else {
 
-                                    pDialog.setTitleText("Download Failed");
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    if (downloadFileRef != 0) {
+
+                                        pDialog.setTitleText("Download Started");
+                                        pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
 
 
+                                    }else {
+
+                                        pDialog.setTitleText("Download Failed");
+                                        pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+
+
+                                    }
+
+
+                                }else{
+                                    pDialog.setTitleText("Not Available");
                                 }
+
 
 
 
@@ -193,12 +206,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
 
     }
 
-    private void  showloading( ) {
 
-
-
-
-    }
 
 
 

@@ -1,4 +1,4 @@
-package com.music.free.musicapp;
+package com.music.play.musicapp;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 
 import com.android.volley.Request;
@@ -156,6 +155,8 @@ public class SongsFragment extends Fragment {
 
 
     }
+
+
 
 
 }

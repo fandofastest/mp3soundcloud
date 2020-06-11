@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.music.free.musicapp.R;
+import com.music.play.musicapp.R;
 
 
 /**

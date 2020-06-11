@@ -1,8 +1,12 @@
-package com.music.free.musicapp;
+package com.music.play.musicapp;
 
 import android.Manifest;
+import android.graphics.Color;
 import android.graphics.Typeface;
+
 import com.google.android.material.tabs.TabLayout;
+
+
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +22,7 @@ import android.widget.TextView;
 
 
 import Adapter.CategoryAdapter;
+import guy4444.smartrate.SmartRate;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     SearchView searchView;
@@ -132,11 +137,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+
+
+
     public  void showloading(){
         progresly.setVisibility(View.VISIBLE);
     }
 
     public  void hideoading(){
         progresly.setVisibility(View.GONE);
+    }
+
+    public  void onexit(){
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        SmartRate.Rate(MainActivity.this
+                , "Rate Us"
+                , "Tell others what you think about this app"
+                , "Continue"
+                , "Please take a moment and rate us on Google Play"
+                , "click here"
+                , "Cancel"
+                , "Thanks for the feedback"
+                , Color.parseColor("#FB4093")
+                , 4
+                , new SmartRate.CallBack_UserRating() {
+                    @Override
+                    public void userRating(int rating) {
+                        // Do something
+                        // maybe from now disable this button
+                    }
+                }
+        );
+
+
     }
 }

@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.music.free.musicapp.SearchFragment;
-import com.music.free.musicapp.SongsFragment;
+import com.music.play.musicapp.SearchFragment;
+import com.music.play.musicapp.SongsFragment;
 
 
 /**

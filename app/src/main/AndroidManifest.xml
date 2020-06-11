@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.music.free.musicapp">
+    package="com.music.play.musicapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -17,8 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.music.free.musicapp.MainActivity"></activity>
-        <activity android:name="com.music.free.musicapp.Splash_activity">
+        <activity android:name="com.music.play.musicapp.MainActivity"></activity>
+        <activity android:name="com.music.play.musicapp.Splash_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.music.free.musicapp.PlayerActivity"
+            android:name="com.music.play.musicapp.PlayerActivity"
             android:hardwareAccelerated="false" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
