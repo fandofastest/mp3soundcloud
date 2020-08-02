@@ -193,6 +193,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/prevview"
                             android:layout_width="30dp"
                             android:layout_height="13dp"
                             android:layout_marginRight="16dp"
@@ -232,6 +233,7 @@
                         </FrameLayout>
 
                         <ImageView
+                            android:id="@+id/nextview"
                             android:layout_width="30dp"
                             android:layout_height="13dp"
                             android:layout_marginLeft="16dp"

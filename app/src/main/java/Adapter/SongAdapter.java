@@ -142,10 +142,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
                             case R.id.play:
 
                                 Intent intent = new Intent(ctx, PlayerActivity.class);
-                                intent.putExtra("id",modalClass.getId());
-                                intent.putExtra("title",modalClass.getSongName());
-                                intent.putExtra("duration",modalClass.getDuration());
-                                intent.putExtra("imgurl",modalClass.getImgurl());
+                                intent.putExtra("pos",position);
                                 ctx.startActivities(new Intent[]{intent});
 
 
