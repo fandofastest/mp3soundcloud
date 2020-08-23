@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -14,191 +15,14 @@
 
 
     </androidx.recyclerview.widget.RecyclerView>
-   <!-- <LinearLayout
+
+    <LinearLayout
+        android:layout_alignParentBottom= "true"
+        android:gravity="bottom"
+        android:id="@+id/banner_container"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
-        android:orientation="vertical"
-        android:background="#FFFFFF"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:layout_width="76dp"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                android:layout_marginLeft="13dp"
-                android:background="@drawable/sultan"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="horizontal">
-
-
-                    <customfonts.MyTextView_Helveticanue_Medium
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:textSize="13sp"
-                        android:layout_height="wrap_content"
-                        android:text="Baby Ko Bass Pasand Hai Song"
-                        android:textColor="#818990"/>
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_like"/>
-
-
-                </LinearLayout>
-
-                <SeekBar
-                    android:id="@+id/seekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="7dp"
-                    android:progress="0"
-                    android:layout_marginLeft="5dp"
-                    android:splitTrack="false"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="7dp"
-                    android:thumbTint="#00000000"
-                    android:progressDrawable="@drawable/seekbar_style" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-                    <customfonts.MyTextView_Helveticanue_Medium
-                        android:id="@+id/tvmin"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:text="0:00"/>
-
-                    <customfonts.MyTextView_Helveticanue_Medium
-                        android:id="@+id/tvmax"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="10sp"
-                        android:layout_height="wrap_content"
-                        android:text="4:20"/>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/ic_repeat"/>
-                    </LinearLayout>
-
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_marginRight="16dp"
-                            android:background="@drawable/ic_back"/>
-
-                        <FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <ImageView
-                                android:id="@+id/play"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/ic_play"/>
-                            <ImageView
-                                android:id="@+id/pause"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:visibility="gone"
-                                android:background="@drawable/ic_pause"/>
-
-                        </FrameLayout>
-
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_marginLeft="16dp"
-                            android:background="@drawable/ic_forward"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/ic_shuffle"/>
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="12dp"
-                        android:background="@drawable/ic_options_lines"/>
-                </LinearLayout>
-
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>-->
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
 
 
 </RelativeLayout>

@@ -1,24 +1,23 @@
-package customfonts;
+package com.music.free.customfonts;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 
-public class MyTextView_Helveticanue_Medium extends TextView {
+public class MyTextViewHelveticanueMedium extends androidx.appcompat.widget.AppCompatTextView {
 
-    public MyTextView_Helveticanue_Medium(Context context, AttributeSet attrs, int defStyle) {
+    public MyTextViewHelveticanueMedium(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public MyTextView_Helveticanue_Medium(Context context, AttributeSet attrs) {
+    public MyTextViewHelveticanueMedium(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public MyTextView_Helveticanue_Medium(Context context) {
+    public MyTextViewHelveticanueMedium(Context context) {
         super(context);
         init();
     }

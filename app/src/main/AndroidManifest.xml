@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name="com.music.free.musicapp.MainActivity"></activity>
-        <activity android:name="com.music.free.musicapp.Splash_activity">
+        <activity android:name="com.music.free.musicapp.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

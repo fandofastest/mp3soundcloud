@@ -42,7 +42,7 @@
             android:layout_marginLeft="13dp"
             android:orientation="vertical">
 
-            <customfonts.MyTextView_Helveticanue_Medium
+            <com.music.free.customfonts.MyTextViewHelveticanueMedium
                 android:id="@+id/txt_song_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:orientation="horizontal">
 
 
-                <customfonts.MyTextView_Helveticanue_Medium
+                <com.music.free.customfonts.MyTextViewHelveticanueMedium
                    android:id="@+id/txt_artist_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                     android:text="Vishal Dadlani"/>
 
 
-                <customfonts.MyTextView_Helveticanue_Medium
+                <com.music.free.customfonts.MyTextViewHelveticanueMedium
                    android:id="@+id/txt_movie_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
 
         </LinearLayout>
 
-        <customfonts.MyTextView_Helveticanue_Medium
+        <com.music.free.customfonts.MyTextViewHelveticanueMedium
             android:id="@+id/txt_time"
             android:layout_width="wrap_content"
             android:layout_gravity="center"

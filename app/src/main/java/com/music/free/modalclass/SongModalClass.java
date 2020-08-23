@@ -1,4 +1,4 @@
-package ModalClass;
+package com.music.free.modalclass;
 
 /**
  * Created by Remmss on 29-08-2017.
@@ -7,8 +7,8 @@ package ModalClass;
 public class SongModalClass {
 
     int img;
-    String SongName;
-    String ArtistName;
+    String songName;
+    String artistName;
     String duration;
     String imgurl;
     String id;
@@ -41,19 +41,19 @@ public class SongModalClass {
 
 
     public String getSongName() {
-        return SongName;
+        return songName;
     }
 
     public void setSongName(String songName) {
-        SongName = songName;
+        this.songName = songName;
     }
 
     public String getArtistName() {
-        return ArtistName;
+        return artistName;
     }
 
     public void setArtistName(String artistName) {
-        ArtistName = artistName;
+        this.artistName = artistName;
     }
 
 

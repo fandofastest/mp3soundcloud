@@ -4,11 +4,7 @@ public class Utils {
 
     public static final int MAX_PROGRESS = 10000;
 
-    /**
-     * Function to convert milliseconds time to
-     * Timer Format
-     * Hours:Minutes:Seconds
-     */
+
     public String milliSecondsToTimer(long milliseconds) {
         String finalTimerString = "";
         String secondsString = "";
@@ -35,35 +31,16 @@ public class Utils {
         return finalTimerString;
     }
 
-    /**
-     * Function to get Progress percentage
-     *
-     * @param currentDuration
-     * @param totalDuration
-     */
+
     public int getProgressSeekBar(long currentDuration, long totalDuration) {
-        Double progress = (double) 0;
+
         // calculating percentage
-        progress = (((double) currentDuration) / totalDuration) * MAX_PROGRESS;
+        Double  progress = (((double) currentDuration) / totalDuration) * MAX_PROGRESS;
 
         // return percentage
         return progress.intValue();
     }
 
-    /**
-     * Function to change progress to timer
-     *
-     * @param progress - totalDuration
-     *                 returns current duration in milliseconds
-     */
-    public int progressToTimer(int progress, int totalDuration) {
-        int currentDuration = 0;
-        totalDuration = (int) (totalDuration / 1000);
-        currentDuration = (int) ((((double) progress) / MAX_PROGRESS) * totalDuration);
-
-        // return current duration in milliseconds
-        return currentDuration * 1000;
-    }
 
 }
 

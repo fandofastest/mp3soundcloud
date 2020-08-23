@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -30,10 +31,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ViewPager viewPager;
     CategoryAdapter categoryAdapter;
     LinearLayout linear;
-    ImageView play,pause,imgsearch;
-    private Typeface mTypeface;
-    public static String querysearch;
+    ImageView play;
+    ImageView  pause;
+    ImageView  imgsearch;
+     Typeface mTypeface;
     LinearLayout progresly;
+
+
 
     FragmentRefreshListener fragmentRefreshListener;
 
@@ -42,12 +46,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
         viewPager = findViewById(R.id.viewpager);
         linear = findViewById(R.id.linear);
         searchView=findViewById(R.id.searchview);
         imgsearch=findViewById(R.id.ic_search);
         progresly=findViewById(R.id.llProgressBar);
+
+
+        new GDPRChecker()
+                .withContext(MainActivity.this)
+                .withPrivacyUrl(getString(R.string.termsurl)) // your privacy url
+                .withPublisherIds(Constants.getAppid()) // your admob account Publisher id
+                .withTestMode("9424DF76F06983D1392E609FC074596C") // remove this on real project
+                .check();
+
+
+
 
 
 
@@ -63,21 +82,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         play.setOnClickListener(this);
         pause.setOnClickListener(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.System.canWrite(this)) {
+        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)&& (!Settings.System.canWrite(this))) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
-            } else {
-            }
-        } else {
+
         }
 
-        imgsearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(1);
-            }
-        });
+        imgsearch.setOnClickListener(v -> viewPager.setCurrentItem(1));
 
 
 
@@ -97,10 +108,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-    }
-
-    public FragmentRefreshListener getFragmentRefreshListener() {
-        return fragmentRefreshListener;
     }
 
     public void setFragmentRefreshListener(FragmentRefreshListener fragmentRefreshListener) {
@@ -131,6 +138,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 pause.setVisibility(View.GONE);
                 break;
 
+            default:
+
+
         }
 
 
@@ -144,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progresly.setVisibility(View.VISIBLE);
     }
 
-    public  void hideoading(){
+    public  void hideLoading(){
         progresly.setVisibility(View.GONE);
     }
 

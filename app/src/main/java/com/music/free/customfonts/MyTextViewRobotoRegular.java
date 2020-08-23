@@ -1,23 +1,24 @@
-package customfonts;
+package com.music.free.customfonts;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.EditText;
+import android.widget.TextView;
 
-public class EditText_Helvatica_Meidum extends EditText {
 
-    public EditText_Helvatica_Meidum(Context context, AttributeSet attrs, int defStyle) {
+public class MyTextViewRobotoRegular extends androidx.appcompat.widget.AppCompatTextView {
+
+    public MyTextViewRobotoRegular(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public EditText_Helvatica_Meidum(Context context, AttributeSet attrs) {
+    public MyTextViewRobotoRegular(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public EditText_Helvatica_Meidum(Context context) {
+    public MyTextViewRobotoRegular(Context context) {
         super(context);
         init();
     }

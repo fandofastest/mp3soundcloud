@@ -1,34 +1,29 @@
 package com.music.free.musicapp;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.os.Handler;
+import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
 
-import ModalClass.SongModalClass;
+import com.music.free.modalclass.SongModalClass;
 
-import static android.widget.Toast.LENGTH_SHORT;
-import static com.music.free.musicapp.MainActivity.totalduration;
 
 /**
  * Created by Remmss on 29-08-2017.
@@ -36,12 +31,18 @@ import static com.music.free.musicapp.MainActivity.totalduration;
 
 public class PlayerActivity extends AppCompatActivity implements CommonFragment.onSomeEventListener,View.OnClickListener {
 
-
-    ImageView img_play, img_pause;
+    LinearLayout admoblayout;
+    ImageView imgplay;
+    ImageView imgpause;
     int pos=0;
     ProgressBar progressBar;
-    TextView tvtitle, tvartist, tv_song_current_duration, tv_song_total_duration;
-    ImageView imageView,next,prev;
+    TextView tvtitle;
+    TextView      tvartist;
+    TextView      tvsongcurrentduration;
+    TextView     tvsongtotalduration;
+    ImageView imageView;
+    ImageView       next;
+    ImageView       prev;
     SeekBar seekBar;
     int currentpost=0;
     int newpost;
@@ -53,14 +54,19 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_sliding_view);
+        setContentView(R.layout.activity_music_player);
 
-        if (Splash_activity.statususer.equals("aman")) {
+        admoblayout=findViewById(R.id.banner_container);
+        Ads ads  = new Ads();
+        Display display =getWindowManager().getDefaultDisplay();
+        ads.ShowBannerAds(PlayerActivity.this,admoblayout,Constants.getBannerfan(),Constants.getBanner(),display);
 
-            LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    String status = intent.getStringExtra("status");
+                    String status = intent.getStringExtra(Constants.getStatus());
 
                     if (status.equals("playing")) {
 
@@ -75,11 +81,11 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
                 }
 
 
-            }, new IntentFilter("fando"));
+            }, new IntentFilter(Constants.getIntentfilter()));
 
 
-            img_play = (ImageView) findViewById(R.id.img_play);
-            img_pause = (ImageView) findViewById(R.id.img_pause);
+            imgplay = (ImageView) findViewById(R.id.img_play);
+            imgpause = (ImageView) findViewById(R.id.img_pause);
             next=findViewById(R.id.nextview);
             prev=findViewById(R.id.prevview);
 
@@ -107,22 +113,25 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-
+                    //must needed for seekbar
                 }
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
+                    //must needed for seekbar
 
                 }
+
+
             });
 
 
 
-            tv_song_current_duration = (TextView) findViewById(R.id.tvmin);
-            tv_song_total_duration = (TextView) findViewById(R.id.tvmax);
+            tvsongcurrentduration = (TextView) findViewById(R.id.tvmin);
+            tvsongtotalduration = (TextView) findViewById(R.id.tvmax);
 
-            img_play.setOnClickListener(this);
-            img_pause.setOnClickListener(this);
+            imgplay.setOnClickListener(this);
+            imgpause.setOnClickListener(this);
             next.setOnClickListener(this);
             prev.setOnClickListener(this);
             tvartist = findViewById(R.id.artist);
@@ -143,11 +152,6 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
             getWindow()
                     .getDecorView()
                     .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        } else {
-
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" )));
-
-        }
 
     }
 
@@ -166,11 +170,11 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
                 break;
             case R.id.nextview:
                 next();
-                System.out.println("nexxx");
                 break;
             case R.id.prevview:
                prev();
                 break;
+            default:
 
         }
 
@@ -179,7 +183,7 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
     public void playmusic(int pos) {
         currentpost=pos;
 
-        SongModalClass songModalClass = SongsFragment.listsongModalClasses.get(pos);
+        SongModalClass songModalClass = Constants.getListsongModalClasses().get(pos);
         tvartist.setText(songModalClass.getArtistName());
         tvtitle.setText(songModalClass.getSongName());
 
@@ -189,7 +193,7 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
 
         Intent plyerservice = new Intent(PlayerActivity.this, MediaPlayerService.class);
 
-        plyerservice.putExtra("mediaurl", Constants.SERVERURL + songModalClass.getId());
+        plyerservice.putExtra("mediaurl", Constants.getServerurl() + songModalClass.getId());
 
 
         startService(plyerservice);
@@ -197,10 +201,6 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
 
     }
 
-    @Override
-    public void someEvent(int s) {
-
-    }
 
 
     /**
@@ -217,19 +217,19 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
     private void updateTimerAndSeekbar() {
 
 
-        Intent intent = new Intent("fando");
-        intent.putExtra("status", "getduration");
+        Intent intent = new Intent(Constants.getIntentfilter());
+        intent.putExtra(Constants.getStatus(), "getduration");
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
 
 
         // Displaying Total Duration time
         Utils utils = new Utils();
-        tv_song_total_duration.setText(utils.milliSecondsToTimer(totalduration));
+        tvsongtotalduration.setText(utils.milliSecondsToTimer(Constants.getTotalduration()));
         // Displaying time completed playing
-        tv_song_current_duration.setText(utils.milliSecondsToTimer(MainActivity.currentduraiton));
+        tvsongcurrentduration.setText(utils.milliSecondsToTimer(Constants.getCurrentduration()));
 
         // Updating progress bar
-        int progress = (int) (utils.getProgressSeekBar(MainActivity.currentduraiton, totalduration));
+        int progress =  (utils.getProgressSeekBar(Constants.getCurrentduration(), Constants.getTotalduration()));
         seekBar.setProgress(progress);
     }
 
@@ -243,7 +243,7 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
 
     public void next(){
 
-        if (currentpost==SongsFragment.listsongModalClasses.size()-1){
+        if (currentpost==Constants.getListsongModalClasses().size()-1){
             newpost= 0;
 
         }
@@ -260,7 +260,7 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
 
 
         if (currentpost==0){
-              newpost= SongsFragment.listsongModalClasses.size()-1;
+              newpost= Constants.getListsongModalClasses().size()-1;
 
         }
         else {
@@ -274,24 +274,24 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
     }
 
     public void pauseMediaPlayer() {
-        img_play.setVisibility(View.VISIBLE);
-        img_pause.setVisibility(View.GONE);
+        imgplay.setVisibility(View.VISIBLE);
+        imgpause.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
 
-        Intent intent = new Intent("fando");
-        intent.putExtra("status", "pause");
+        Intent intent = new Intent(Constants.getIntentfilter());
+        intent.putExtra(Constants.getStatus(), "pause");
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
     }
 
     public void playMediaPlayer() {
 
-        Intent intent = new Intent("fando");
-        intent.putExtra("status", "resume");
+        Intent intent = new Intent(Constants.getIntentfilter());
+        intent.putExtra(Constants.getStatus(), "resume");
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
 
         progressBar.setVisibility(View.GONE);
-        img_pause.setVisibility(View.VISIBLE);
-        img_play.setVisibility(View.GONE);
+        imgplay.setVisibility(View.GONE);
+        imgpause.setVisibility(View.VISIBLE);
 
         // Changing button image to pause button
         mHandler.post(mUpdateTimeTask);
@@ -301,7 +301,7 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
 
         double currentseek = ((double) progress/(double)Utils.MAX_PROGRESS);
 
-        int totaldura= (int) totalduration;
+        int totaldura= Constants.getTotalduration();
         int seek= (int) (totaldura*currentseek);
 
         Intent intent = new Intent("fando");
@@ -312,9 +312,13 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
 
 
 
-        System.out.println("sekarang : "+seek);
-//        System.out.println("sekarang pro "+progress);
 
+    }
+
+    @Override
+    public void someEvent(int s) {
+
+        //needed for implements class
 
     }
 }

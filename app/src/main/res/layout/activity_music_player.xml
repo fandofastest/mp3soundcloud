@@ -57,6 +57,13 @@
         android:layout_alignParentStart="true"
         android:background="#FFFFFF"
         android:orientation="vertical">
+        <LinearLayout
+            android:gravity="bottom"
+            android:id="@+id/banner_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,12 +84,7 @@
                     android:layout_marginTop="14dp"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="12dp"
-                        android:background="@drawable/ic_like" />
+
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -92,16 +94,16 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <customfonts.MyTextView_Helveticanue_Medium
+                        <com.music.free.customfonts.MyTextViewHelveticanueMedium
                             android:id="@+id/title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Baby Ko Bass Pasand Hai Song"
+                            android:text="@string/playertitle"
                             android:textColor="#818990"
                             android:textSize="13sp" />
 
-                        <customfonts.MyTextView_Helveticanue_Medium
+                        <com.music.free.customfonts.MyTextViewHelveticanueMedium
                             android:id="@+id/artist"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -114,12 +116,7 @@
                     </LinearLayout>
 
 
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_options_lines" />
+
 
                 </LinearLayout>
 
@@ -141,7 +138,7 @@
                     android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
-                    <customfonts.MyTextView_Helveticanue_Medium
+                    <com.music.free.customfonts.MyTextViewHelveticanueMedium
                         android:id="@+id/tvmin"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -149,7 +146,7 @@
                         android:text="0:00"
                         android:textSize="10sp" />
 
-                    <customfonts.MyTextView_Helveticanue_Medium
+                    <com.music.free.customfonts.MyTextViewHelveticanueMedium
                         android:id="@+id/tvmax"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -177,11 +174,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/ic_repeat" />
+
                     </LinearLayout>
 
 
@@ -250,11 +243,7 @@
                         android:gravity="right"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/ic_shuffle" />
+
 
                     </LinearLayout>
 
@@ -269,5 +258,6 @@
 
 
     </LinearLayout>
+
 
 </RelativeLayout>

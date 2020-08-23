@@ -20,7 +20,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/splash" />
 
-        <customfonts.MyTextView_Helveticanue_Medium
+        <com.music.free.customfonts.MyTextViewHelveticanueMedium
             android:id="@+id/artist_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:textColor="#272727"
             android:textSize="11sp" />
 
-        <customfonts.MyTextView_Helveticanue_Medium
+        <com.music.free.customfonts.MyTextViewHelveticanueMedium
             android:id="@+id/total_songs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

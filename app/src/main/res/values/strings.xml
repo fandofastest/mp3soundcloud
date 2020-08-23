@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Flat Music</string>
+    <string name="playertitle">Music Title</string>
+    <string name="loading">Loading</string>
+    <string name="quittitle">Are You Sure to Quit App ?</string>
+    <string name="quitmessage">Music Will Stopped if Quit App, Just Press Home button if u wanna still listening music</string>
+    <string name="quitbutton">Sure Quit</string>
+    <string name="rate">Rate</string>
+    <string name="termsurl">https://play.google.com/intl/en-us_us/about/play-terms/index.html</string>
 </resources>

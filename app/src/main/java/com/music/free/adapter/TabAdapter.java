@@ -1,4 +1,4 @@
-package Adapter;
+package com.music.free.adapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -14,7 +14,7 @@ import com.music.free.musicapp.SongsFragment;
 
 public class TabAdapter extends FragmentStatePagerAdapter {
 
-    final int PAGE_COUNT = 2;
+   static final int PAGE_COUNT = 2;
     private String tabTitles[] = new String[] { "SONGS", "SEARCH"};
 
 
@@ -35,6 +35,8 @@ public class TabAdapter extends FragmentStatePagerAdapter {
 
                 SearchFragment searchFragment = new SearchFragment();
                 return searchFragment;
+
+            default:
 
 
         }

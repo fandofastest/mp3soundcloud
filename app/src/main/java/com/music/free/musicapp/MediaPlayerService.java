@@ -10,9 +10,12 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import java.util.Objects;
 
 public class MediaPlayerService extends Service{
 
@@ -31,7 +34,7 @@ public class MediaPlayerService extends Service{
             LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    String status = intent.getStringExtra("status");
+                    String status = intent.getStringExtra(Constants.getStatus());
 
                     if (status.equals("pause")){
                         mp.pause();
@@ -53,15 +56,15 @@ public class MediaPlayerService extends Service{
                         mp.release();
                     }
                     else if (status.equals("getduration")){
-                     MainActivity.totalduration=mp.getDuration();
-                        MainActivity.currentduraiton=mp.getCurrentPosition();
+                     Constants.setTotalduration(mp.getDuration());
+                        Constants.setCurrentduration(mp.getCurrentPosition());
                     }
 
 
 
 
                 }
-            }, new IntentFilter("fando"));
+            }, new IntentFilter(Constants.getIntentfilter()));
 
         }
 
@@ -77,6 +80,7 @@ public class MediaPlayerService extends Service{
 
 
 
+        @SuppressLint("WrongConstant")
         @Override
         public int onStartCommand(final Intent intent, int flags, int startId) {
 
@@ -87,7 +91,7 @@ public class MediaPlayerService extends Service{
                 String mediaurl = intent.getStringExtra("mediaurl");
 
 
-                System.out.println(mediaurl);
+
 
 
                 mp.stop();
@@ -102,27 +106,14 @@ public class MediaPlayerService extends Service{
                 mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
 //            mp.prepareAsync(); //don't use prepareAsync for mp3 playback
 
-                mp.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-                    @Override
-                    public boolean onError(MediaPlayer mp, int what, int extra) {
-
-                        return true;
-                    }
-                });
+                mp.setOnErrorListener((mp, what, extra) -> true);
 
 
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp1) {
-                        System.out.println("error looping");
+                mp.setOnCompletionListener(mp1 -> {
 
-                        Intent intent = new Intent("fando");
-                        intent.putExtra("status", "stoping");
-                        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
-
-                    }
-
-
+                    Intent intent1 = new Intent("fando");
+                    intent1.putExtra("status", "stoping");
+                    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent1);
 
                 });
 
@@ -143,20 +134,7 @@ public class MediaPlayerService extends Service{
                             intent.putExtra("status", "playing");
                             LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
 
-//                        final Handler handler = new Handler();
-//                        final int delay = 100; //milliseconds
 
-
-//                        if (mp.isPlaying()){
-//                            handler.postDelayed(new Runnable(){
-//                                public void run(){
-//                                    //do something
-//                                    currentduraiton=mp.getCurrentPosition();
-//                                    totalduration=mp.getDuration();
-//                                    handler.postDelayed(this, delay);
-//                                }
-//                            }, delay);
-//                        }
 
 
 
@@ -176,7 +154,7 @@ public class MediaPlayerService extends Service{
 
             }
             catch (Exception e){
-                System.out.println(e);
+                Log.println(1,"log", Objects.requireNonNull(e.getMessage()));
             }
 
 
