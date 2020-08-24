@@ -9,7 +9,7 @@ public class Constants {
     private Constants() {
     }
 
-
+    static String statususer;
      static  String ads;
      static String key;
      static String banner;
@@ -28,6 +28,15 @@ public class Constants {
      static String downloaddir="/Downloads";
      static String urlstatus="http://fando.id/simplemusic/getstatus.php";
      static String querysearch;
+
+
+    public static String getStatususer() {
+        return statususer;
+    }
+
+    public static void setStatususer(String statususer) {
+        Constants.statususer = statususer;
+    }
 
     public static String getAppid() {
         return appid;

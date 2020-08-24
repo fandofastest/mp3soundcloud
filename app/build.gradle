@@ -56,6 +56,7 @@ dependencies {
     implementation 'com.kaopiz:kprogresshud:1.0.2'
     implementation 'com.crowdfire.cfalertdialog:cfalertdialog:1.1.0'
     implementation 'com.github.guy-4444:SmartRateUsDialog-Android:1.00.08'
+    implementation 'com.github.Lauzy:LyricView:1.0.1'
 
 
 

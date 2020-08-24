@@ -22,7 +22,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import com.lauzy.freedom.library.Lrc;
+import com.lauzy.freedom.library.LrcHelper;
 import com.music.free.modalclass.SongModalClass;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.List;
 
 
 /**
@@ -44,12 +52,13 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
     ImageView       next;
     ImageView       prev;
     SeekBar seekBar;
+//    List <Lrc> lrcs;
     int currentpost=0;
     int newpost;
 
     // Handler to update UI timer, progress bar etc,.
     private Handler mHandler = new Handler();
-
+      com.lauzy.freedom.library.LrcView mlirik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +70,12 @@ public class PlayerActivity extends AppCompatActivity implements CommonFragment.
         Display display =getWindowManager().getDefaultDisplay();
         ads.ShowBannerAds(PlayerActivity.this,admoblayout,Constants.getBannerfan(),Constants.getBanner(),display);
 
-
+//        File file = new File("https://musicpedia.xyz/api/lirik.php?id=b1g1UjFtWHBoenY2RHpJZU1Td3Z5UT09");
+//        lrcs=LrcHelper.parseLrcFromFile(file);
+//
+//        mlirik=findViewById(R.id.mlirik);
+//
+//        mlirik.setLrcData(lrcs);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
                 @Override

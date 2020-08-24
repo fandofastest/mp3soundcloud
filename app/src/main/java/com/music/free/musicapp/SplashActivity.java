@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -17,6 +18,9 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import org.json.JSONException;
 
@@ -30,6 +34,12 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
         getStatusApp(Constants.urlstatus);
         getKey();
 
@@ -79,6 +89,7 @@ public class SplashActivity extends AppCompatActivity {
                 Constants.setBannerfan(response.getString("fanbanner"));
                 Constants.setInterfan(response.getString("faninter"));
                 Constants.setAppid(response.getString("appid"));
+                Constants.setStatususer(response.getString("statususer"));
                 Button button= findViewById(R.id.buttonstart);
                 ProgressBar progressBar =findViewById(R.id.progressbar);
                 progressBar.setVisibility(View.INVISIBLE);
@@ -130,11 +141,14 @@ public class SplashActivity extends AppCompatActivity {
 
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.e("errr",e.getMessage());
             }
 
 
         }, error -> {
+
+
+            System.out.println("errrrrr"+error.getMessage());
 
         });
 

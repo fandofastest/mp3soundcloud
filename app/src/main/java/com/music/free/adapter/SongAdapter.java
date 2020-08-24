@@ -107,6 +107,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
         Utils utils = new Utils();
         String duratiom= utils.milliSecondsToTimer(Long.parseLong(modalClass.getDuration()));
         holder.txttime.setText(duratiom);
+
         holder.txtmoviename.setVisibility(View.GONE);
 
         holder.txtartistname.setText(modalClass.getArtistName());
@@ -122,7 +123,14 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
         holder.lytlayout.setOnClickListener(v -> new BottomSheetMenu.Builder(ctx, new BottomSheetMenu.BottomSheetMenuListener() {
             @Override
             public void onCreateBottomSheetMenu(MenuInflater inflater, Menu menu) {
-                inflater.inflate(R.menu.menu, menu);
+                if (Constants.getStatususer().equals("danger")){
+
+
+                }
+                else {
+                    inflater.inflate(R.menu.menu, menu);
+                }
+
 
 
             }
@@ -161,7 +169,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
 
                     case R.id.dl:
 
-
                         SweetAlertDialog pDialog = new SweetAlertDialog(ctx, SweetAlertDialog.PROGRESS_TYPE);
                         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
                         pDialog.setTitleText("Loading Your Download");
@@ -169,8 +176,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MyViewHolder> 
                         pDialog.show();
 
                         long downloadFileRef = downloadFile(Uri.parse(Constants.getServerurl() +modalClass.getId()), Environment.DIRECTORY_DOWNLOADS, modalClass.getSongName()+".mp3");
-
-
 
                         if (downloadFileRef != 0) {
 
