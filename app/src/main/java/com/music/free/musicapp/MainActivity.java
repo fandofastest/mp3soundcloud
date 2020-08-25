@@ -58,16 +58,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progresly=findViewById(R.id.llProgressBar);
 
 
-        new GDPRChecker()
-                .withContext(MainActivity.this)
-                .withPrivacyUrl(getString(R.string.termsurl)) // your privacy url
-                .withPublisherIds(Constants.getAppid()) // your admob account Publisher id
-                .withTestMode("9424DF76F06983D1392E609FC074596C") // remove this on real project
-                .check();
 
-
-
-
+        GDPRChecker gdprChecker = new GDPRChecker();
+        gdprChecker.check(getApplicationContext(),MainActivity.this,Constants.getAppid());
 
 
 

@@ -6,7 +6,8 @@ package com.music.free.modalclass;
 
 public class SongModalClass {
 
-    int img;
+
+
     String songName;
     String artistName;
     String duration;

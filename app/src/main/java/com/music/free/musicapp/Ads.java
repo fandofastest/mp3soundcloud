@@ -24,7 +24,6 @@ import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdCallback;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
-import com.ixidev.gdpr.GDPRChecker;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import static android.content.ContentValues.TAG;
@@ -276,13 +275,6 @@ public class Ads {
         mAdView.setAdUnitId(banneradmob);
 
         AdRequest.Builder builder = new AdRequest.Builder();
-        GDPRChecker.Request request = GDPRChecker.getRequest();
-        if (request == GDPRChecker.Request.NON_PERSONALIZED) {
-            // load non Personalized ads
-            Bundle extras = new Bundle();
-            extras.putString("npa", "1");
-            builder.addNetworkExtrasBundle(AdMobAdapter.class, extras);
-        } // else do nothing , it will load PERSONALIZED ads
 
 
 
